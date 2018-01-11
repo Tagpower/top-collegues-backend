@@ -12,9 +12,11 @@ import com.example.topcolleguesbackend.entite.Collegue;
 import com.example.topcolleguesbackend.repository.CollegueRepository;
 
 
+
 @Component
 public class ApplicationStartupListener implements ApplicationListener<ApplicationReadyEvent> {
 
+	public static final String PREFIX_PATH_IMAGES = "../../assets/img/";
 	@Autowired
 	CollegueRepository collegueRepo;
 	/**
@@ -24,14 +26,15 @@ public class ApplicationStartupListener implements ApplicationListener<Applicati
 	@Override
 	public void onApplicationEvent(final ApplicationReadyEvent event) {
 		List<Collegue> collegues = new ArrayList<>();
-		collegues.add(new Collegue("Clément","clement.jpg",100));
-		collegues.add(new Collegue("Mélodie","chloe2.jpg",100));
-		collegues.add(new Collegue("Sandra","cat.jpg",100));
-		collegues.add(new Collegue("Alexandre","olga.png",100));
-		collegues.add(new Collegue("Assia","max.png",100));
-		collegues.add(new Collegue("Mohammed","beer.png",100));
-		collegues.add(new Collegue("Yves","yves.jpg",100));
-		collegues.add(new Collegue("Thien-Ban","musk.jpg",100));
+		collegues.add(new Collegue("Clément",PREFIX_PATH_IMAGES+"clement.jpg",100));
+		collegues.add(new Collegue("Mélodie",PREFIX_PATH_IMAGES+"chloe2.jpg",100));
+		collegues.add(new Collegue("Sandra",PREFIX_PATH_IMAGES+"cat.jpg",100));
+		collegues.add(new Collegue("Alexandre",PREFIX_PATH_IMAGES+"olga.jpg",100));
+		collegues.add(new Collegue("Assia",PREFIX_PATH_IMAGES+"max.jpg",100));
+		collegues.add(new Collegue("Mohammed",PREFIX_PATH_IMAGES+"beer.png",100));
+		collegues.add(new Collegue("Yves",PREFIX_PATH_IMAGES+"yves.jpeg",100));
+		collegues.add(new Collegue("Thien Ban",PREFIX_PATH_IMAGES+"musk.jpg",100));
+		collegues.add(new Collegue("Rossi","https://media.licdn.com/media/AAEAAQAAAAAAAAdQAAAAJDk1MWNmZDAwLTNiMTgtNDU0NC05NzM5LWY3MjRhMjBmOGM0Yg.jpg",9000));
 		collegueRepo.save(collegues);
 		
 		return;

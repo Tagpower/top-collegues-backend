@@ -31,8 +31,10 @@ public class CollegueController {
 		Optional<Collegue> existingCollegue = this.collegueRepo.findByPseudo(newCollegue.getPseudo());
 		if (!existingCollegue.isPresent()) {
 			collegueRepo.save(newCollegue);
+			return collegueRepo.findAll();
+		} else {
+			return null;
 		}
-		return collegueRepo.findAll();
 	}
 	
 	@RequestMapping(method = RequestMethod.PATCH, value="/{pseudo}")
@@ -42,11 +44,22 @@ public class CollegueController {
 		
 		if(optCol.isPresent()) {
 			Collegue col = optCol.get();
-			if(action.getAction().equals("aimer")) {
+			
+			switch(action.getAction()) {
+			case "aimer":
 				col.setScore(col.getScore() + 10);
-			} else if (action.getAction().equals("detester")) {
+				break;
+			case "pasAimer":
 				col.setScore(col.getScore() - 5);
+				break;
+			case "adorer":
+				col.setScore(col.getScore() + 25);
+				break;
+			case "detester":
+				col.setScore(col.getScore() - 15);
+				break;
 			}
+			
 			collegueRepo.save(col);
 			return col;
 		} else {
