@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.topcolleguesbackend.entite.Collegue;
+import com.example.topcolleguesbackend.entite.Commentaire;
 import com.example.topcolleguesbackend.entite.Vote;
 import com.example.topcolleguesbackend.repository.CollegueRepository;
+import com.example.topcolleguesbackend.repository.CommentaireRepository;
 import com.example.topcolleguesbackend.repository.VoteRepository;
 
 @CrossOrigin
@@ -23,6 +25,7 @@ import com.example.topcolleguesbackend.repository.VoteRepository;
 public class CollegueController {
 	@Autowired private CollegueRepository collegueRepo;
 	@Autowired private VoteRepository voteRepo;
+	@Autowired private CommentaireRepository comRepo;
 	
 	@GetMapping
 	public List<Collegue> listerCollegues() {
@@ -38,6 +41,12 @@ public class CollegueController {
 		} else {
 			return null;
 		}
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value="/{pseudo}/commentaires")
+	public List<Commentaire> postCommentaire(@RequestBody Commentaire com) {
+		comRepo.save(com);
+		return comRepo.findAll();
 	}
 	
 	@RequestMapping(method = RequestMethod.PATCH, value="/{pseudo}")
