@@ -30,7 +30,7 @@ public class VoteController {
 	public List<Vote> listVotesSince(@RequestParam(value="since", required=false) Optional<Integer> sinceId) {
 		if (sinceId.isPresent()) {
 			//return derniersVotes.stream().filter(v -> (v.getId().intValue() >= sinceId.get())).collect(Collectors.toList()) ;			
-			return voteRepo.findByIdGreaterThanEqual(sinceId.get());
+			return voteRepo.findByIdGreaterThanEqualOrderByIdDesc(sinceId.get());
 		} else {
 			return voteRepo.findFirst3ByOrderByIdDesc();
 		}

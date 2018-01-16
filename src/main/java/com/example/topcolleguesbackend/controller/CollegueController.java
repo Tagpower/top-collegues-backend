@@ -64,7 +64,7 @@ public class CollegueController {
 			}
 			collegueRepo.save(col);
 			
-			voteRepo.save(new Vote(col, action.getAction()));
+			voteRepo.save(new Vote(col, action.getAction(), col.getScore()));
 			
 			return col;
 		} else {

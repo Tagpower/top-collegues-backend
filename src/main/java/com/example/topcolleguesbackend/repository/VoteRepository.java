@@ -10,7 +10,7 @@ public interface VoteRepository extends JpaRepository<Vote, Integer> {
 
 		List<Vote> findFirst3ByOrderByIdDesc();
 		
-		List<Vote> findByIdGreaterThanEqual(int since);
+		List<Vote> findByIdGreaterThanEqualOrderByIdDesc(int since);
 	
 	}
 

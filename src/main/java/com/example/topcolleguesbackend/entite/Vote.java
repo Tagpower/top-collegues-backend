@@ -16,6 +16,7 @@ public class Vote {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String avis;
+	private int score;
 	@ManyToOne
 	@JoinColumn(name="id_col")
 	private Collegue collegue;
@@ -24,9 +25,10 @@ public class Vote {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Vote(Collegue collegue, String avis) {
+	public Vote(Collegue collegue, String avis, int score) {
 		this.collegue = collegue;
 		this.avis = avis;
+		this.score = score;
 	}
 
 	public Integer getId() {
@@ -52,6 +54,16 @@ public class Vote {
 	public void setCollegue(Collegue collegue) {
 		this.collegue = collegue;
 	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
+	
 	
 	
 	
