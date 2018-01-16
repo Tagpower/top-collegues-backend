@@ -13,13 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.topcolleguesbackend.entite.Collegue;
+import com.example.topcolleguesbackend.entite.Vote;
 import com.example.topcolleguesbackend.repository.CollegueRepository;
+import com.example.topcolleguesbackend.repository.VoteRepository;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/collegues")
 public class CollegueController {
 	@Autowired private CollegueRepository collegueRepo;
+	@Autowired private VoteRepository voteRepo;
 	
 	@GetMapping
 	public List<Collegue> listerCollegues() {
@@ -59,8 +62,10 @@ public class CollegueController {
 				col.setScore(col.getScore() - 15);
 				break;
 			}
-			
 			collegueRepo.save(col);
+			
+			voteRepo.save(new Vote(col, action.getAction()));
+			
 			return col;
 		} else {
 			return null; //FIXME

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.topcolleguesbackend.entite.Collegue;
 import com.example.topcolleguesbackend.repository.CollegueRepository;
+import com.example.topcolleguesbackend.repository.VoteRepository;
 
 
 
@@ -19,6 +20,7 @@ public class ApplicationStartupListener implements ApplicationListener<Applicati
 	public static final String PREFIX_PATH_IMAGES = "../../assets/img/";
 	@Autowired
 	CollegueRepository collegueRepo;
+	VoteRepository voteRepo;
 	/**
 	 * This event is executed as late as conceivably possible to indicate that the
 	 * application is ready to service requests.
@@ -35,6 +37,10 @@ public class ApplicationStartupListener implements ApplicationListener<Applicati
 		collegues.add(new Collegue("Yves",PREFIX_PATH_IMAGES+"yves.jpeg",100));
 		collegues.add(new Collegue("Thien Ban",PREFIX_PATH_IMAGES+"musk.jpg",100));
 		collegues.add(new Collegue("Rossi","https://media.licdn.com/media/AAEAAQAAAAAAAAdQAAAAJDk1MWNmZDAwLTNiMTgtNDU0NC05NzM5LWY3MjRhMjBmOGM0Yg.jpg",9000));
+		collegues.add(new Collegue("Alabama","https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Alabama_in_United_States.svg/2000px-Alabama_in_United_States.svg.png",600));
+		collegues.add(new Collegue("Colonel Harland Sanders","https://upload.wikimedia.org/wikipedia/fr/thumb/b/bf/KFC_logo.svg/1024px-KFC_logo.svg.png",150000000));
+		collegues.add(new Collegue("Ton voisin","http://i0.kym-cdn.com/entries/icons/mobile/000/004/856/ScumbagSteve.jpg", -1000));
+		
 		collegueRepo.save(collegues);
 		
 		return;
